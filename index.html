@@ -50,6 +50,7 @@
                 font-weight: 800;
                 text-transform: lowercase;
                 color: rgba(255,255,255,0.92);
+                z-index: 4;
             }
 
             h1 {
@@ -284,7 +285,7 @@
             /* Responsive adjustments */
             @media (max-width: 600px) {
                 body {
-                    padding: 12px 12px 24px;
+                    padding: 64px 12px 24px; /* give room for .site-tag */
                     align-items: flex-start;
                     justify-content: flex-start;
                 }
@@ -305,17 +306,19 @@
 
                 .wallet-grid {
                     width: 100%;
-                    padding: 16px 8px;
-                    gap: 12px;
+                    padding: 18px 10px;
+                    gap: 16px;
                     border-radius: 18px;
                     flex-direction: column;
                     align-items: stretch;
+                    z-index: 1;
                 }
 
                 .wallet-card {
                     width: 100%;
                     min-height: auto;
                     padding: 14px;
+                    margin-bottom: 6px;
                 }
 
                 .wallet-label {
