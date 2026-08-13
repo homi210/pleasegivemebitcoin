@@ -280,6 +280,88 @@
             .sol-glow .wallet-label {
                 color: rgba(20, 241, 149, 1);
             }
+            
+            /* Responsive adjustments */
+            @media (max-width: 600px) {
+                body {
+                    padding: 12px 12px 24px;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                }
+
+                .site-tag {
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 12px;
+                    font-size: 0.9rem;
+                }
+
+                .made-by {
+                    left: auto;
+                    right: 12px;
+                    bottom: 10px;
+                    font-size: 0.64rem;
+                }
+
+                .wallet-grid {
+                    width: 100%;
+                    padding: 16px 8px;
+                    gap: 12px;
+                    border-radius: 18px;
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .wallet-card {
+                    width: 100%;
+                    min-height: auto;
+                    padding: 14px;
+                }
+
+                .wallet-label {
+                    font-size: 1.15rem;
+                    gap: 6px;
+                }
+
+                .wallet-logo {
+                    width: 34px;
+                    height: 34px;
+                }
+
+                .qr-code {
+                    width: clamp(96px, 36vw, 140px);
+                    height: auto;
+                    aspect-ratio: 1/1;
+                    margin-bottom: 8px;
+                    padding: 8px;
+                    border-radius: 12px;
+                }
+
+                .wallet-address { font-size: 0.72rem; }
+                .scan-text { font-size: 0.68rem; }
+            }
+
+            @media (min-width: 601px) and (max-width: 980px) {
+                .wallet-grid {
+                    width: min(860px, 100%);
+                    gap: 18px;
+                    padding: 20px;
+                }
+
+                .wallet-card {
+                    width: calc(50% - 12px);
+                    min-height: 300px;
+                }
+
+                .qr-code {
+                    width: clamp(110px, 24vw, 150px);
+                }
+
+                .wallet-label { font-size: 1.4rem; }
+
+                .site-tag { left: 18px; top: 14px; transform: none; font-size: 0.95rem; }
+                .made-by { left: 16px; right: auto; bottom: 12px; font-size: 0.7rem; }
+            }
         </style>
 </head>
 <body>
