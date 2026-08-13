@@ -17,17 +17,21 @@
             body {
                 font-family: "Optima", "Segoe UI", sans-serif;
                 background:
-                    radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 28%),
-                    radial-gradient(circle at bottom right, rgba(0,0,0,0.18), transparent 30%),
-                    linear-gradient(135deg, #0f172a 0%, #1d4e89 28%, #0f766e 58%, #0b3b2e 100%);
+                    radial-gradient(ellipse 90% 60% at 18% -8%, rgba(130,170,255,0.16), transparent 55%),
+                    radial-gradient(ellipse 80% 60% at 100% 108%, rgba(20,241,149,0.10), transparent 55%),
+                    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.05), transparent 62%),
+                    linear-gradient(160deg, #0a0f1f 0%, #123059 32%, #0f5a68 62%, #0a2e24 100%);
+                background-attachment: fixed;
                 color: rgb(255, 255, 255);
                 min-height: 100vh;
                 margin: 0;
                 padding: 0 20px 30px;
                 position: relative;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                gap: 22px;
             }
 
             body::before {
@@ -40,38 +44,54 @@
 
             .site-tag {
                 position: absolute;
-                top: 16px;
-                left: 18px;
-                font-size: 1rem;
-                letter-spacing: 0.08em;
-                opacity: 0.96;
-                font-weight: 800;
+                top: 18px;
+                left: 20px;
+                font-size: 0.95rem;
+                letter-spacing: 0.13em;
+                opacity: 0.92;
+                font-weight: 700;
                 text-transform: lowercase;
-                color: rgba(255,255,255,0.92);
+                color: rgba(255,255,255,0.9);
                 z-index: 4;
             }
 
             h1 {
-                margin: 0 auto;
-                font-size: 2rem;
-                font-weight: 700;
-                letter-spacing: 0.04em;
-                text-transform: none;
+                margin: 0;
+                font-size: 2.4rem;
+                font-weight: 800;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                text-align: center;
+                color: #ffffff;
+                text-shadow: 0 2px 18px rgba(0,0,0,0.35), 0 0 26px rgba(255,255,255,0.12);
             }
 
             .wallet-grid {
+                position: relative;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 24px;
+                gap: 28px;
                 flex-wrap: wrap;
                 margin: 0 auto;
-                width: min(980px, 100%);
-                padding: 24px 10px;
-                border-radius: 28px;
-                background: rgba(255,255,255,0.02);
-                border: 1px solid rgba(255,255,255,0.08);
-                box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+                width: min(1000px, 100%);
+                padding: 32px 28px;
+                border-radius: 32px;
+                background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012));
+                border: 1px solid rgba(255,255,255,0.09);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px -24px rgba(0,0,0,0.5);
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+            }
+
+            .wallet-grid::before {
+                content: "";
+                position: absolute;
+                inset: -70px;
+                background: radial-gradient(ellipse 55% 55% at 50% 42%, rgba(140,180,255,0.14), transparent 70%);
+                filter: blur(38px);
+                z-index: -1;
+                pointer-events: none;
             }
 
             .wallet-card {
@@ -79,27 +99,28 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                background: rgba(255, 255, 255, 0.08);
-                border: 1px solid rgba(255, 255, 255, 0.16);
-                border-radius: 24px;
-                padding: 18px 16px 16px;
+                background: linear-gradient(165deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
+                border: 1px solid rgba(255,255,255,0.14);
+                border-radius: 22px;
+                padding: 22px 20px 20px;
                 width: min(280px, 100%);
                 min-height: 320px;
-                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255,255,255,0.1);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 40px -14px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.18);
+                backdrop-filter: blur(14px) saturate(140%);
+                -webkit-backdrop-filter: blur(14px) saturate(140%);
                 overflow: visible;
-                transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+                transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
                 cursor: pointer;
             }
 
             .wallet-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255,255,255,0.14);
+                transform: translateY(-6px);
+                border-color: rgba(255,255,255,0.24);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 26px 56px -16px rgba(0,0,0,0.48), 0 6px 18px rgba(0,0,0,0.22);
             }
 
             .wallet-card.expanded {
-                transform: translateY(-6px);
+                transform: translateY(-7px);
             }
 
             .card-hint {
@@ -108,7 +129,7 @@
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
                 text-align: center;
-                color: rgba(255,255,255,0.85);
+                color: rgba(255,255,255,0.7);
                 opacity: 0;
                 transform: translateY(4px);
                 transition: opacity 220ms ease, transform 220ms ease;
@@ -118,7 +139,7 @@
 
             @media (hover: hover) {
                 .wallet-card:hover:not(.expanded) .card-hint {
-                    opacity: 0.85;
+                    opacity: 0.72;
                     transform: translateY(0);
                 }
             }
@@ -131,34 +152,43 @@
                 overflow: hidden;
                 max-height: 0;
                 opacity: 0;
-                transition: max-height 300ms ease, opacity 220ms ease, padding 220ms ease;
+                transition: max-height 320ms cubic-bezier(.22,1,.36,1), opacity 260ms ease, padding 260ms ease;
                 padding-top: 0;
             }
 
             .wallet-card.expanded .card-details {
                 max-height: 100px;
                 opacity: 1;
-                padding-top: 12px;
+                padding-top: 14px;
             }
 
             .wallet-address.abbrev-mode {
                 position: relative;
                 display: block;
-                margin: 12px auto 0;
-                padding: 6px 10px;
+                margin: 16px auto 0;
+                padding: 8px 14px;
                 max-width: 94%;
-                background: transparent;
-                border: 1px solid rgba(255,255,255,0.06);
-                border-radius: 10px;
+                background: rgba(255,255,255,0.045);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 14px;
                 font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Segoe UI Mono", "Roboto Mono", monospace;
-                font-size: 0.78rem;
+                font-size: 0.76rem;
+                letter-spacing: 0.02em;
                 line-height: 1.35;
                 word-break: break-word;
                 text-align: center;
-                color: rgba(255,255,255,0.95);
-                box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+                color: rgba(255,255,255,0.92);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+                transition: background 0.25s ease, border-color 0.25s ease;
                 overflow-wrap: break-word;
                 z-index: 2;
+            }
+
+            @media (hover: hover) {
+                .wallet-address.abbrev-mode:hover {
+                    background: rgba(255,255,255,0.08);
+                    border-color: rgba(255,255,255,0.2);
+                }
             }
 
             .wallet-address .addr-full {
@@ -188,12 +218,13 @@
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%) translateY(6px);
-                bottom: -28px;
-                background: rgba(0,0,0,0.56);
+                bottom: -30px;
+                background: rgba(10,14,24,0.82);
                 color: rgba(255,255,255,0.96);
-                padding: 6px 8px;
+                padding: 6px 9px;
                 border-radius: 8px;
-                font-size: 0.66rem;
+                border: 1px solid rgba(255,255,255,0.1);
+                font-size: 0.64rem;
                 letter-spacing: 0.12em;
                 text-transform: uppercase;
                 opacity: 0;
@@ -224,54 +255,81 @@
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
-                margin-top: 12px;
-                padding-top: 12px;
-                border-top: 1px solid rgba(255,255,255,0.1);
+                margin-top: 14px;
+                padding-top: 14px;
+                border-top: 1px solid rgba(255,255,255,0.09);
             }
 
             .send-btn {
-                background: rgba(255,255,255,0.06);
+                background: rgba(255,255,255,0.07);
                 color: white;
-                border: 1px solid rgba(255,255,255,0.12);
-                padding: 8px 12px;
-                border-radius: 10px;
+                border: 1px solid rgba(255,255,255,0.16);
+                padding: 9px 16px;
+                border-radius: 999px;
                 font-weight: 700;
+                font-size: 0.78rem;
+                letter-spacing: 0.02em;
                 cursor: pointer;
                 text-decoration: none;
                 display: inline-block;
-                transition: background 0.2s ease, border-color 0.2s ease;
+                transition: background 0.22s ease, border-color 0.22s ease, transform 0.18s ease;
             }
 
             .send-btn:hover {
-                background: rgba(255,255,255,0.1);
-                border-color: rgba(255,255,255,0.2);
+                background: rgba(255,255,255,0.14);
+                border-color: rgba(255,255,255,0.3);
+                transform: translateY(-1px);
             }
 
-            .send-btn:focus {
-                outline: 2px solid rgba(255,255,255,0.14);
+            .send-btn:active {
+                transform: translateY(0);
+            }
+
+            .send-btn:focus-visible {
+                outline: 2px solid rgba(255,255,255,0.55);
+                outline-offset: 2px;
             }
 
             .explorer-link {
-                color: rgba(255,255,255,0.95);
-                text-decoration: underline;
-                font-weight: 700;
+                color: rgba(255,255,255,0.85);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.78rem;
+                letter-spacing: 0.02em;
                 cursor: pointer;
-                transition: color 0.2s ease;
+                padding: 9px 14px;
+                border-radius: 999px;
+                border: 1px solid rgba(255,255,255,0.12);
+                transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease;
             }
 
             .explorer-link:hover {
                 color: rgba(255,255,255,1);
+                background: rgba(255,255,255,0.06);
+                border-color: rgba(255,255,255,0.24);
             }
+
+            .explorer-link:focus-visible {
+                outline: 2px solid rgba(255,255,255,0.55);
+                outline-offset: 2px;
+            }
+
+            .eth-glow .send-btn { border-color: rgba(98,126,234,0.4); }
+            .eth-glow .send-btn:hover { border-color: rgba(98,126,234,0.6); background: rgba(98,126,234,0.16); }
+            .btc-glow .send-btn { border-color: rgba(245,166,35,0.4); }
+            .btc-glow .send-btn:hover { border-color: rgba(245,166,35,0.6); background: rgba(245,166,35,0.16); }
+            .sol-glow .send-btn { border-color: rgba(20,241,149,0.4); }
+            .sol-glow .send-btn:hover { border-color: rgba(20,241,149,0.6); background: rgba(20,241,149,0.16); }
 
             .wallet-label {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 8px;
+                gap: 10px;
                 width: 100%;
-                margin: 0 0 14px;
-                padding: 10px 8px 8px;
+                margin: 0 0 18px;
+                padding: 0 8px 8px;
                 text-align: center;
                 background: transparent;
                 border: none;
@@ -279,35 +337,35 @@
                 box-shadow: none;
                 color: #ffffff;
                 font-family: "Segoe UI", "Arial Black", "Impact", sans-serif;
-                font-size: 1.75rem;
-                letter-spacing: 0.12em;
+                font-size: 1.65rem;
+                letter-spacing: 0.13em;
                 text-transform: uppercase;
                 font-weight: 900;
                 line-height: 1;
-                text-shadow: 0 2px 10px rgba(0,0,0,0.25), 0 0 18px rgba(255,255,255,0.12);
+                text-shadow: 0 2px 12px rgba(0,0,0,0.28), 0 0 20px rgba(255,255,255,0.1);
             }
 
             .wallet-logo {
-                width: 42px;
-                height: 42px;
+                width: 46px;
+                height: 46px;
                 display: block;
                 object-fit: contain;
                 flex-shrink: 0;
-                filter: drop-shadow(0 4px 10px rgba(0,0,0,0.28));
+                filter: drop-shadow(0 6px 14px rgba(0,0,0,0.32));
                 background: transparent;
             }
 
             .qr-code {
                 display: block;
-                width: 150px;
-                height: 150px;
-                margin: 0 auto;
-                border-radius: 16px;
-                background: rgba(255,255,255,0.94);
-                padding: 10px;
-                transition: box-shadow 0.25s ease, transform 0.15s ease, filter 0.25s ease;
+                width: 152px;
+                height: 152px;
+                margin: 4px auto 0;
+                border-radius: 18px;
+                background: #ffffff;
+                padding: 12px;
+                transition: box-shadow 0.3s ease, transform 0.2s ease;
                 box-shadow: 0 12px 28px rgba(0,0,0,0.22);
-                border: 1px solid rgba(255,255,255,0.7);
+                border: 1px solid rgba(255,255,255,0.8);
                 position: relative;
                 z-index: 1;
                 cursor: pointer;
@@ -319,68 +377,67 @@
 
             /* Slight colored glows for QR images to match card theme */
             .eth-glow .qr-code {
-                box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(98,126,234,0.7), 0 0 52px rgba(98,126,234,0.8), 0 0 90px rgba(98,126,234,0.32);
+                box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(98,126,234,0.45), 0 0 42px rgba(98,126,234,0.4), 0 0 74px rgba(98,126,234,0.16);
             }
 
             .btc-glow .qr-code {
-                box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(245,166,35,0.7), 0 0 52px rgba(245,166,35,0.8), 0 0 90px rgba(245,166,35,0.32);
+                box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(245,166,35,0.45), 0 0 42px rgba(245,166,35,0.4), 0 0 74px rgba(245,166,35,0.16);
             }
 
             .sol-glow .qr-code {
-                box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(20,241,149,0.7), 0 0 52px rgba(20,241,149,0.8), 0 0 90px rgba(20,241,149,0.32);
+                box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(20,241,149,0.45), 0 0 42px rgba(20,241,149,0.4), 0 0 74px rgba(20,241,149,0.16);
             }
 
             /* Hover lift and pulsing glow animations */
             .wallet-card:hover .qr-code {
                 transform: translateY(-6px) scale(1.03);
-                filter: saturate(1.08);
             }
 
             .eth-glow:hover .qr-code {
-                animation: ethPulse 1.6s ease-in-out infinite;
+                animation: ethPulse 1.8s ease-in-out infinite;
             }
 
             @keyframes ethPulse {
                 0% {
-                    box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(98,126,234,0.7), 0 0 52px rgba(98,126,234,0.8), 0 0 90px rgba(98,126,234,0.32);
+                    box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(98,126,234,0.45), 0 0 42px rgba(98,126,234,0.4), 0 0 74px rgba(98,126,234,0.16);
                 }
                 50% {
-                    box-shadow: 0 16px 42px rgba(0,0,0,0.28), 0 0 32px rgba(98,126,234,0.9), 0 0 68px rgba(98,126,234,1), 0 0 120px rgba(98,126,234,0.42);
+                    box-shadow: 0 16px 36px rgba(0,0,0,0.26), 0 0 26px rgba(98,126,234,0.6), 0 0 54px rgba(98,126,234,0.55), 0 0 96px rgba(98,126,234,0.24);
                 }
                 100% {
-                    box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(98,126,234,0.7), 0 0 52px rgba(98,126,234,0.8), 0 0 90px rgba(98,126,234,0.32);
+                    box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(98,126,234,0.45), 0 0 42px rgba(98,126,234,0.4), 0 0 74px rgba(98,126,234,0.16);
                 }
             }
 
             .btc-glow:hover .qr-code {
-                animation: btcPulse 1.6s ease-in-out infinite;
+                animation: btcPulse 1.8s ease-in-out infinite;
             }
 
             @keyframes btcPulse {
                 0% {
-                    box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(245,166,35,0.7), 0 0 52px rgba(245,166,35,0.8), 0 0 90px rgba(245,166,35,0.32);
+                    box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(245,166,35,0.45), 0 0 42px rgba(245,166,35,0.4), 0 0 74px rgba(245,166,35,0.16);
                 }
                 50% {
-                    box-shadow: 0 16px 42px rgba(0,0,0,0.28), 0 0 32px rgba(245,166,35,0.9), 0 0 68px rgba(245,166,35,1), 0 0 120px rgba(245,166,35,0.42);
+                    box-shadow: 0 16px 36px rgba(0,0,0,0.26), 0 0 26px rgba(245,166,35,0.6), 0 0 54px rgba(245,166,35,0.55), 0 0 96px rgba(245,166,35,0.24);
                 }
                 100% {
-                    box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(245,166,35,0.7), 0 0 52px rgba(245,166,35,0.8), 0 0 90px rgba(245,166,35,0.32);
+                    box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(245,166,35,0.45), 0 0 42px rgba(245,166,35,0.4), 0 0 74px rgba(245,166,35,0.16);
                 }
             }
 
             .sol-glow:hover .qr-code {
-                animation: solPulse 1.6s ease-in-out infinite;
+                animation: solPulse 1.8s ease-in-out infinite;
             }
 
             @keyframes solPulse {
                 0% {
-                    box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(20,241,149,0.7), 0 0 52px rgba(20,241,149,0.8), 0 0 90px rgba(20,241,149,0.32);
+                    box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(20,241,149,0.45), 0 0 42px rgba(20,241,149,0.4), 0 0 74px rgba(20,241,149,0.16);
                 }
                 50% {
-                    box-shadow: 0 16px 42px rgba(0,0,0,0.28), 0 0 32px rgba(20,241,149,0.9), 0 0 68px rgba(20,241,149,1), 0 0 120px rgba(20,241,149,0.42);
+                    box-shadow: 0 16px 36px rgba(0,0,0,0.26), 0 0 26px rgba(20,241,149,0.6), 0 0 54px rgba(20,241,149,0.55), 0 0 96px rgba(20,241,149,0.24);
                 }
                 100% {
-                    box-shadow: 0 14px 34px rgba(0,0,0,0.24), 0 0 26px rgba(20,241,149,0.7), 0 0 52px rgba(20,241,149,0.8), 0 0 90px rgba(20,241,149,0.32);
+                    box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(20,241,149,0.45), 0 0 42px rgba(20,241,149,0.4), 0 0 74px rgba(20,241,149,0.16);
                 }
             }
 
@@ -391,42 +448,57 @@
 
             .made-by {
                 position: fixed;
-                left: 16px;
-                bottom: 14px;
-                font-size: 0.72rem;
-                letter-spacing: 0.08em;
+                left: 18px;
+                bottom: 16px;
+                font-size: 0.68rem;
+                letter-spacing: 0.13em;
                 text-transform: uppercase;
-                opacity: 0.8;
-                font-weight: 700;
-                color: rgba(255,255,255,0.9);
+                opacity: 0.58;
+                font-weight: 600;
+                color: rgba(255,255,255,0.8);
                 z-index: 2;
             }
 
             .eth-glow {
-                border-color: rgba(98, 126, 234, 0.26);
-                box-shadow: 0 0 0 1px rgba(98, 126, 234, 0.18), 0 12px 28px rgba(21, 35, 67, 0.18), 0 0 24px rgba(98, 126, 234, 0.28), 0 0 52px rgba(98, 126, 234, 0.18);
+                border-color: rgba(98, 126, 234, 0.24);
+                box-shadow: 0 0 0 1px rgba(98, 126, 234, 0.16), 0 12px 26px rgba(21, 35, 67, 0.16), 0 0 20px rgba(98, 126, 234, 0.22), 0 0 44px rgba(98, 126, 234, 0.14);
+            }
+
+            .eth-glow:hover {
+                border-color: rgba(98, 126, 234, 0.4);
+                box-shadow: 0 0 0 1px rgba(98, 126, 234, 0.3), 0 26px 56px -16px rgba(21, 35, 67, 0.5), 0 0 26px rgba(98, 126, 234, 0.3), 0 0 56px rgba(98, 126, 234, 0.18);
             }
 
             .eth-glow .wallet-label {
-                color: rgba(98, 126, 234, 1);
+                color: rgba(130, 155, 255, 1);
             }
 
             .btc-glow {
-                border-color: rgba(245, 166, 35, 0.26);
-                box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.18), 0 12px 28px rgba(44, 29, 5, 0.18), 0 0 24px rgba(245, 166, 35, 0.28), 0 0 52px rgba(245, 166, 35, 0.18);
+                border-color: rgba(245, 166, 35, 0.24);
+                box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.16), 0 12px 26px rgba(44, 29, 5, 0.16), 0 0 20px rgba(245, 166, 35, 0.22), 0 0 44px rgba(245, 166, 35, 0.14);
+            }
+
+            .btc-glow:hover {
+                border-color: rgba(245, 166, 35, 0.4);
+                box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.3), 0 26px 56px -16px rgba(44, 29, 5, 0.5), 0 0 26px rgba(245, 166, 35, 0.3), 0 0 56px rgba(245, 166, 35, 0.18);
             }
 
             .btc-glow .wallet-label {
-                color: rgba(245, 166, 35, 1);
+                color: rgba(250, 181, 74, 1);
             }
 
             .sol-glow {
-                border-color: rgba(20, 241, 149, 0.26);
-                box-shadow: 0 0 0 1px rgba(20, 241, 149, 0.18), 0 12px 28px rgba(12, 39, 26, 0.18), 0 0 24px rgba(20, 241, 149, 0.28), 0 0 52px rgba(20, 241, 149, 0.18);
+                border-color: rgba(20, 241, 149, 0.24);
+                box-shadow: 0 0 0 1px rgba(20, 241, 149, 0.16), 0 12px 26px rgba(12, 39, 26, 0.16), 0 0 20px rgba(20, 241, 149, 0.22), 0 0 44px rgba(20, 241, 149, 0.14);
+            }
+
+            .sol-glow:hover {
+                border-color: rgba(20, 241, 149, 0.4);
+                box-shadow: 0 0 0 1px rgba(20, 241, 149, 0.3), 0 26px 56px -16px rgba(12, 39, 26, 0.5), 0 0 26px rgba(20, 241, 149, 0.3), 0 0 56px rgba(20, 241, 149, 0.18);
             }
 
             .sol-glow .wallet-label {
-                color: rgba(20, 241, 149, 1);
+                color: rgba(78, 245, 178, 1);
             }
 
             @media (max-width: 600px) {
@@ -452,9 +524,9 @@
 
                 .wallet-grid {
                     width: 100%;
-                    padding: 18px 10px;
+                    padding: 20px 14px;
                     gap: 16px;
-                    border-radius: 18px;
+                    border-radius: 22px;
                     flex-direction: column;
                     align-items: stretch;
                     z-index: 1;
@@ -463,13 +535,14 @@
                 .wallet-card {
                     width: 100%;
                     min-height: auto;
-                    padding: 14px;
+                    padding: 18px 16px;
                     margin-bottom: 6px;
                 }
 
                 .wallet-label {
                     font-size: 1.15rem;
                     gap: 6px;
+                    margin-bottom: 14px;
                 }
 
                 .wallet-logo {
@@ -483,11 +556,15 @@
                     aspect-ratio: 1/1;
                     margin: 0 auto;
                     padding: 8px;
-                    border-radius: 12px;
+                    border-radius: 14px;
                     box-shadow: 0 8px 18px rgba(0,0,0,0.18);
                 }
 
                 .wallet-address { font-size: 0.72rem; }
+
+                h1 {
+                    font-size: 1.5rem;
+                }
             }
 
             @media (min-width: 601px) and (max-width: 980px) {
@@ -526,6 +603,8 @@
 <body>
     <div class="site-tag">pleasegivemebitcoin.com</div>
     <div class="made-by">Made by Homi</div>
+
+    <h1>PLEASE GIVE ME BITCOIN</h1>
 
     <section class="wallet-grid">
         <article class="wallet-card eth-glow">
@@ -675,7 +754,7 @@
             explorerLink.target = '_blank';
             explorerLink.rel = 'noopener noreferrer';
             explorerLink.className = 'explorer-link';
-            explorerLink.textContent = '📊 EXPLORER';
+            explorerLink.textContent = '🔍 EXPLORER';
             explorerLink.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
