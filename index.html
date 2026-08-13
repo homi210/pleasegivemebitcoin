@@ -38,8 +38,6 @@
                 pointer-events: none;
             }
 
-            /* (Removed animated rainbow border overlay) */
-
             .site-tag {
                 position: absolute;
                 top: 16px;
@@ -50,7 +48,7 @@
                 font-weight: 800;
                 text-transform: lowercase;
                 color: rgba(255,255,255,0.92);
-                 z-index: 4; /* Restoring z-index */
+                z-index: 4;
             }
 
             h1 {
@@ -90,13 +88,179 @@
                 box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255,255,255,0.1);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
-                overflow: hidden;
+                overflow: visible;
                 transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+                cursor: pointer;
             }
 
             .wallet-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255,255,255,0.14);
+            }
+
+            .wallet-card.expanded {
+                transform: translateY(-6px);
+            }
+
+            .card-hint {
+                margin-top: 10px;
+                font-size: 0.64rem;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                text-align: center;
+                color: rgba(255,255,255,0.85);
+                opacity: 0;
+                transform: translateY(4px);
+                transition: opacity 220ms ease, transform 220ms ease;
+                pointer-events: none;
+                user-select: none;
+            }
+
+            @media (hover: hover) {
+                .wallet-card:hover:not(.expanded) .card-hint {
+                    opacity: 0.85;
+                    transform: translateY(0);
+                }
+            }
+
+            .wallet-card.expanded .card-hint {
+                display: none;
+            }
+
+            .wallet-card .card-details {
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                transition: max-height 300ms ease, opacity 220ms ease, padding 220ms ease;
+                padding-top: 0;
+            }
+
+            .wallet-card.expanded .card-details {
+                max-height: 100px;
+                opacity: 1;
+                padding-top: 12px;
+            }
+
+            .wallet-address.abbrev-mode {
+                position: relative;
+                display: block;
+                margin: 12px auto 0;
+                padding: 6px 10px;
+                max-width: 94%;
+                background: transparent;
+                border: 1px solid rgba(255,255,255,0.06);
+                border-radius: 10px;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Segoe UI Mono", "Roboto Mono", monospace;
+                font-size: 0.78rem;
+                line-height: 1.35;
+                word-break: break-word;
+                text-align: center;
+                color: rgba(255,255,255,0.95);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+                overflow-wrap: break-word;
+                z-index: 2;
+            }
+
+            .wallet-address .addr-full {
+                display: none;
+            }
+
+            .wallet-address .addr-abbrev {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                pointer-events: auto;
+                cursor: pointer;
+                color: rgba(255,255,255,0.95);
+            }
+
+            .wallet-card.expanded .wallet-address .addr-full {
+                display: block;
+            }
+
+            .wallet-card.expanded .wallet-address .addr-abbrev {
+                display: none;
+            }
+
+            .wallet-address .addr-abbrev::after {
+                content: attr(data-hint);
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%) translateY(6px);
+                bottom: -28px;
+                background: rgba(0,0,0,0.56);
+                color: rgba(255,255,255,0.96);
+                padding: 6px 8px;
+                border-radius: 8px;
+                font-size: 0.66rem;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                opacity: 0;
+                transition: opacity 140ms ease, transform 140ms ease;
+                white-space: nowrap;
+                pointer-events: none;
+                z-index: 9999;
+                max-width: calc(100vw - 40px);
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            @media (hover: hover) {
+                .wallet-address .addr-abbrev:hover::after {
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }
+            }
+
+            .wallet-address .addr-abbrev.show-hint::after {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .card-actions {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 12px;
+                padding-top: 12px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .send-btn {
+                background: rgba(255,255,255,0.06);
+                color: white;
+                border: 1px solid rgba(255,255,255,0.12);
+                padding: 8px 12px;
+                border-radius: 10px;
+                font-weight: 700;
+                cursor: pointer;
+                text-decoration: none;
+                display: inline-block;
+                transition: background 0.2s ease, border-color 0.2s ease;
+            }
+
+            .send-btn:hover {
+                background: rgba(255,255,255,0.1);
+                border-color: rgba(255,255,255,0.2);
+            }
+
+            .send-btn:focus {
+                outline: 2px solid rgba(255,255,255,0.14);
+            }
+
+            .explorer-link {
+                color: rgba(255,255,255,0.95);
+                text-decoration: underline;
+                font-weight: 700;
+                cursor: pointer;
+                transition: color 0.2s ease;
+            }
+
+            .explorer-link:hover {
+                color: rgba(255,255,255,1);
             }
 
             .wallet-label {
@@ -123,11 +287,6 @@
                 text-shadow: 0 2px 10px rgba(0,0,0,0.25), 0 0 18px rgba(255,255,255,0.12);
             }
 
-            .wallet-label span {
-                display: inline-block;
-                transform: scaleY(1.08);
-            }
-
             .wallet-logo {
                 width: 42px;
                 height: 42px;
@@ -142,7 +301,7 @@
                 display: block;
                 width: 150px;
                 height: 150px;
-                margin: 0 auto 12px;
+                margin: 0 auto;
                 border-radius: 16px;
                 background: rgba(255,255,255,0.94);
                 padding: 10px;
@@ -151,19 +310,11 @@
                 border: 1px solid rgba(255,255,255,0.7);
                 position: relative;
                 z-index: 1;
+                cursor: pointer;
             }
 
-            .made-by {
-                position: fixed;
-                left: 16px;
-                bottom: 14px;
-                font-size: 0.72rem;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                opacity: 0.8;
-                font-weight: 700;
-                color: rgba(255,255,255,0.9);
-                z-index: 2;
+            .qr-code:hover {
+                transform: translateY(-3px) scale(1.02);
             }
 
             /* Slight colored glows for QR images to match card theme */
@@ -183,11 +334,6 @@
             .wallet-card:hover .qr-code {
                 transform: translateY(-6px) scale(1.03);
                 filter: saturate(1.08);
-            }
-
-            .wallet-card:hover .scan-text {
-                transform: translateY(-4px);
-                opacity: 1;
             }
 
             .eth-glow:hover .qr-code {
@@ -238,42 +384,22 @@
                 }
             }
 
-            .wallet-address {
-                 display: block;
-                 margin: 12px auto 0;
-                 padding: 6px 10px;
-                 max-width: 94%;
-                 background: transparent; /* removed bulky tint */
-                 border: 1px solid rgba(255,255,255,0.06);
-                 border-radius: 10px;
-                 font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Segoe UI Mono", "Roboto Mono", monospace;
-                 font-size: 0.78rem;
-                 line-height: 1.35;
-                 word-break: break-word;
-                 text-align: center;
-                 color: rgba(255,255,255,0.95);
-                 box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
-                 overflow-wrap: break-word;
-                position: relative;
-                z-index: 2; /* keep above qr glow */
+            .wallet-card figure {
+                margin: 0;
+                width: 100%;
             }
 
-            .scan-text {
-                opacity: 0.9;
-                margin-bottom: 8px;
-                transition: transform 0.18s ease, opacity 0.18s ease;
-                transform: translateY(0);
-                display: inline-block;
+            .made-by {
+                position: fixed;
+                left: 16px;
+                bottom: 14px;
                 font-size: 0.72rem;
-                letter-spacing: 0.12em;
+                letter-spacing: 0.08em;
                 text-transform: uppercase;
-                position: relative;
-                z-index: 3; /* sit above QR glow */
-                background: transparent; /* remove bulky tint */
-                padding: 0 6px; /* keep small horizontal breathing room */
-                border-radius: 6px;
-                color: rgba(255,255,255,0.98);
-                text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+                opacity: 0.8;
+                font-weight: 700;
+                color: rgba(255,255,255,0.9);
+                z-index: 2;
             }
 
             .eth-glow {
@@ -302,11 +428,10 @@
             .sol-glow .wallet-label {
                 color: rgba(20, 241, 149, 1);
             }
-            
-            /* Responsive adjustments */
+
             @media (max-width: 600px) {
                 body {
-                    padding: 64px 12px 24px; /* give room for .site-tag */
+                    padding: 64px 12px 24px;
                     align-items: flex-start;
                     justify-content: flex-start;
                 }
@@ -356,14 +481,13 @@
                     width: clamp(96px, 36vw, 140px);
                     height: auto;
                     aspect-ratio: 1/1;
-                    margin-bottom: 8px;
+                    margin: 0 auto;
                     padding: 8px;
                     border-radius: 12px;
                     box-shadow: 0 8px 18px rgba(0,0,0,0.18);
                 }
 
                 .wallet-address { font-size: 0.72rem; }
-                .scan-text { font-size: 0.68rem; }
             }
 
             @media (min-width: 601px) and (max-width: 980px) {
@@ -388,15 +512,16 @@
                 .made-by { left: 16px; right: auto; bottom: 12px; font-size: 0.7rem; }
             }
 
-            /* Desktop: three columns when space allows */
             @media (min-width: 981px) {
-                .wallet-grid { gap: 28px; }
-                .wallet-card { width: calc(33.333% - 18.666px); }
-            }
+                .wallet-grid {
+                    gap: 28px;
+                }
 
-            /* Move inline figure styles into CSS */
-            .wallet-card figure { margin: 0; width: 100%; }
-        </style>
+                .wallet-card {
+                    width: calc(33.333% - 18.666px);
+                }
+            }
+    </style>
 </head>
 <body>
     <div class="site-tag">pleasegivemebitcoin.com</div>
@@ -412,6 +537,7 @@
                 <img class="qr-code" src="ADDRESSETH.png" alt="ETH Address QR Code">
                 <figcaption class="wallet-address">0xE965eF6728Da7cdb7042556AD7178eAc9dEB9217</figcaption>
             </figure>
+            <div class="card-hint">Click for more details</div>
         </article>
 
         <article class="wallet-card btc-glow">
@@ -423,6 +549,7 @@
                 <img class="qr-code" src="ADDRESSBTC.png" alt="BTC Address QR Code">
                 <figcaption class="wallet-address">bc1qk5n4hdzzd3a0f64y740wnhxj8tdapgv8sd9djv</figcaption>
             </figure>
+            <div class="card-hint">Click for more details</div>
         </article>
 
         <article class="wallet-card sol-glow">
@@ -434,7 +561,186 @@
                 <img class="qr-code" src="ADDRESSSOL.png" alt="SOL Address QR Code">
                 <figcaption class="wallet-address">H6BUkTV6htsuav3cw5kMcTYJ2MwYXCQ7B3Ezwq4XYytC</figcaption>
             </figure>
+            <div class="card-hint">Click for more details</div>
         </article>
     </section>
+
+    <script>
+    (function(){
+        const wallets = [
+            {
+                cssClass: 'eth-glow',
+                symbol: 'ETH',
+                address: '0xE965eF6728Da7cdb7042556AD7178eAc9dEB9217',
+                explorer: 'https://etherscan.io/address/',
+                paymentPrefix: 'ethereum:'
+            },
+            {
+                cssClass: 'btc-glow',
+                symbol: 'BTC',
+                address: 'bc1qk5n4hdzzd3a0f64y740wnhxj8tdapgv8sd9djv',
+                explorer: 'https://mempool.space/address/',
+                paymentPrefix: 'bitcoin:'
+            },
+            {
+                cssClass: 'sol-glow',
+                symbol: 'SOL',
+                address: 'H6BUkTV6htsuav3cw5kMcTYJ2MwYXCQ7B3Ezwq4XYytC',
+                explorer: 'https://solscan.io/account/',
+                paymentPrefix: 'solana:'
+            }
+        ];
+
+        function abbreviate(addr) {
+            return addr.substring(0, 6) + '...' + addr.substring(addr.length - 4);
+        }
+
+        function openPaymentUri(uri) {
+            window.location.href = uri;
+        }
+
+        wallets.forEach(function(wallet) {
+            const card = document.querySelector('.wallet-card.' + wallet.cssClass);
+            if (!card) return;
+
+            const paymentUri = wallet.paymentPrefix + wallet.address;
+            const walletAddrEl = card.querySelector('.wallet-address');
+            const qrEl = card.querySelector('.qr-code');
+
+            // Build abbreviated (collapsed) and full (expanded) address elements
+            const spanAbbrev = document.createElement('span');
+            spanAbbrev.className = 'addr-abbrev';
+            spanAbbrev.textContent = abbreviate(wallet.address);
+            spanAbbrev.dataset.hint = 'CLICK TO COPY';
+            spanAbbrev.setAttribute('role', 'button');
+            spanAbbrev.setAttribute('tabindex', '0');
+
+            const spanFull = document.createElement('span');
+            spanFull.className = 'addr-full';
+            spanFull.textContent = wallet.address;
+            spanFull.setAttribute('role', 'button');
+            spanFull.setAttribute('tabindex', '0');
+
+            walletAddrEl.textContent = '';
+            walletAddrEl.classList.add('abbrev-mode');
+            walletAddrEl.appendChild(spanAbbrev);
+            walletAddrEl.appendChild(spanFull);
+
+            async function copyAddress() {
+                try {
+                    await navigator.clipboard.writeText(wallet.address);
+                    const prevHint = spanAbbrev.dataset.hint;
+                    spanAbbrev.dataset.hint = 'COPIED ✓';
+                    spanAbbrev.classList.add('show-hint');
+                    setTimeout(function() {
+                        spanAbbrev.dataset.hint = prevHint;
+                        spanAbbrev.classList.remove('show-hint');
+                    }, 1600);
+                } catch (err) {
+                    console.error('Copy failed', err);
+                }
+            }
+
+            [spanAbbrev, spanFull].forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    copyAddress();
+                });
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        copyAddress();
+                    }
+                });
+            });
+
+            // QR code triggers the same payment action as the SEND button
+            if (qrEl) {
+                qrEl.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openPaymentUri(paymentUri);
+                });
+            }
+
+            // Expanded content: explorer link + send button (no QR duplication)
+            const cardDetails = document.createElement('div');
+            cardDetails.className = 'card-details';
+
+            const actions = document.createElement('div');
+            actions.className = 'card-actions';
+
+            const explorerLink = document.createElement('a');
+            explorerLink.href = wallet.explorer + encodeURIComponent(wallet.address);
+            explorerLink.target = '_blank';
+            explorerLink.rel = 'noopener noreferrer';
+            explorerLink.className = 'explorer-link';
+            explorerLink.textContent = '📊 EXPLORER';
+            explorerLink.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            actions.appendChild(explorerLink);
+
+            const sendBtn = document.createElement('a');
+            sendBtn.href = paymentUri;
+            sendBtn.className = 'send-btn';
+            sendBtn.textContent = `SEND ${wallet.symbol} →`;
+            sendBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openPaymentUri(paymentUri);
+            });
+            actions.appendChild(sendBtn);
+
+            cardDetails.appendChild(actions);
+            card.appendChild(cardDetails);
+
+            function collapse() {
+                card.classList.remove('expanded');
+            }
+
+            function expand() {
+                card.classList.add('expanded');
+            }
+
+            function collapseOthers() {
+                document.querySelectorAll('.wallet-card.expanded').forEach(function(c) {
+                    if (c !== card) c.classList.remove('expanded');
+                });
+            }
+
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('a') || e.target.closest('.addr-abbrev') || e.target.closest('.addr-full') || e.target.closest('.qr-code')) return;
+                if (card.classList.contains('expanded')) {
+                    collapse();
+                } else {
+                    collapseOthers();
+                    expand();
+                }
+            });
+
+            card.addEventListener('keydown', function(e) {
+                if (e.target !== card) return;
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (card.classList.contains('expanded')) {
+                        collapse();
+                    } else {
+                        collapseOthers();
+                        expand();
+                    }
+                }
+            });
+        });
+
+        // Close expanded card when clicking outside
+        document.addEventListener('click', function(e) {
+            const inCard = e.target.closest('.wallet-card');
+            if (!inCard) {
+                document.querySelectorAll('.wallet-card.expanded').forEach(c => c.classList.remove('expanded'));
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
