@@ -55,15 +55,27 @@
                 z-index: 4;
             }
 
+            .hero {
+                display: block;
+                width: min(100%, 760px);
+                margin: 0 auto;
+                text-align: center;
+            }
+
             h1 {
                 margin: 0;
-                font-size: 2.4rem;
-                font-weight: 800;
-                letter-spacing: 0.06em;
+                font-size: clamp(1.8rem, 3vw, 3rem);
+                font-weight: 900;
+                letter-spacing: 0.08em;
                 text-transform: uppercase;
                 text-align: center;
                 color: #ffffff;
-                text-shadow: 0 2px 18px rgba(0,0,0,0.35), 0 0 26px rgba(255,255,255,0.12);
+                background: linear-gradient(135deg, #ffffff 0%, #dbe8ff 35%, #a6d8ff 70%, #ffffff 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 0 8px 28px rgba(64,120,255,0.22);
+                line-height: 0.9;
             }
 
             .wallet-grid {
@@ -75,13 +87,163 @@
                 flex-wrap: wrap;
                 margin: 0 auto;
                 width: min(1000px, 100%);
-                padding: 32px 28px;
+                padding: 24px 28px 32px;
                 border-radius: 32px;
                 background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012));
                 border: 1px solid rgba(255,255,255,0.09);
                 box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px -24px rgba(0,0,0,0.5);
                 backdrop-filter: blur(6px);
                 -webkit-backdrop-filter: blur(6px);
+            }
+
+            .meme-cta {
+                position: fixed;
+                right: 24px;
+                bottom: 24px;
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                z-index: 10;
+                max-width: min(82vw, 390px);
+            }
+
+            .meme-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 8px;
+                margin-right: 2px;
+            }
+
+            .meme-bubble {
+                position: relative;
+                max-width: 170px;
+                padding: 10px 12px 9px;
+                border-radius: 16px;
+                background: rgba(255,255,255,0.96);
+                color: #101827;
+                font-weight: 800;
+                font-size: 0.7rem;
+                line-height: 1.35;
+                letter-spacing: 0.04em;
+                text-transform: lowercase;
+                box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+                border: 1px solid rgba(11,18,32,0.08);
+                transform: translateX(0);
+                margin-bottom: 0;
+            }
+
+            .reset-shiba {
+                appearance: none;
+                border: 1px solid rgba(11,18,32,0.12);
+                background: rgba(245, 247, 250, 0.9);
+                color: #0d1727;
+                font-size: 0.52rem;
+                letter-spacing: 0.1em;
+                text-transform: lowercase;
+                border-radius: 999px;
+                padding: 5px 9px;
+                cursor: pointer;
+                box-shadow: 0 6px 14px rgba(8,12,20,0.12);
+                transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+                margin-left: auto;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .reset-shiba.visible {
+                display: inline-flex;
+            }
+
+            .reset-shiba:hover {
+                background: rgba(255,255,255,1);
+                border-color: rgba(11,18,32,0.18);
+                transform: translateY(-1px);
+            }
+
+            .reset-shiba:active {
+                transform: translateY(0);
+            }
+
+            .meme-bubble::after {
+                content: "";
+                position: absolute;
+                right: -7px;
+                bottom: 20px;
+                width: 14px;
+                height: 14px;
+                background: rgba(255,255,255,0.96);
+                border-right: 1px solid rgba(11,18,32,0.08);
+                border-bottom: 1px solid rgba(11,18,32,0.08);
+                transform: rotate(-45deg);
+            }
+
+            .meme-bubble span,
+            .meme-bubble strong {
+                display: block;
+                font-size: 0.72rem;
+                line-height: 1.4;
+                margin-top: 2px;
+                color: #0c1a2a;
+                font-weight: 800;
+            }
+
+            .copy-note {
+                display: none;
+            }
+
+            .shiba-wrap {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 88px;
+                height: 88px;
+                padding: 0;
+                border-radius: 50%;
+                overflow: hidden;
+                background: rgba(255,255,255,0.06);
+                border: 1px solid rgba(255,255,255,0.14);
+                box-shadow: 0 14px 28px rgba(0,0,0,0.24), 0 0 22px rgba(122,192,255,0.16);
+                flex-shrink: 0;
+                cursor: pointer;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .shiba-wrap:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 18px 30px rgba(0,0,0,0.26), 0 0 22px rgba(122,192,255,0.2);
+            }
+
+            .shiba-wrap::before {
+                content: "";
+                position: absolute;
+                inset: -12px;
+                border-radius: 50%;
+                background: radial-gradient(circle at center, rgba(120,170,255,0.22), transparent 66%);
+                filter: blur(10px);
+                z-index: -1;
+            }
+
+            .shiba-image {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.04);
+                transform: translateY(0);
+                animation: floatHero 5.5s ease-in-out infinite;
+            }
+
+            .shiba-wrap.smiling .shiba-image {
+                filter: saturate(1.2) contrast(1.06);
+            }
+
+            @keyframes floatHero {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-3px); }
             }
 
             .wallet-grid::before {
@@ -524,12 +686,44 @@
 
                 .wallet-grid {
                     width: 100%;
-                    padding: 20px 14px;
+                    padding: 28px 14px 20px;
                     gap: 16px;
                     border-radius: 22px;
                     flex-direction: column;
                     align-items: stretch;
                     z-index: 1;
+                }
+
+                .meme-cta {
+                    right: 12px;
+                    bottom: 14px;
+                    max-width: min(86vw, 320px);
+                    gap: 10px;
+                }
+
+                .meme-content {
+                    gap: 6px;
+                }
+
+                .meme-bubble {
+                    max-width: 180px;
+                    font-size: 0.72rem;
+                    padding: 10px 12px;
+                }
+
+                .meme-bubble strong {
+                    font-size: 0.8rem;
+                }
+
+                .copy-note {
+                    margin-right: 4px;
+                    font-size: 0.54rem;
+                    letter-spacing: 0.12em;
+                }
+
+                .shiba-wrap {
+                    width: 72px;
+                    height: 72px;
                 }
 
                 .wallet-card {
@@ -564,6 +758,22 @@
 
                 h1 {
                     font-size: 1.5rem;
+                }
+
+                .hero {
+                    flex-direction: column;
+                    gap: 10px;
+                    width: min(100%, 520px);
+                    padding: 0;
+                }
+
+                h1 {
+                    text-align: center;
+                }
+
+                .shiba-wrap {
+                    width: 68px;
+                    height: 68px;
                 }
             }
 
@@ -604,7 +814,22 @@
     <div class="site-tag">pleasegivemebitcoin.com</div>
     <div class="made-by">Made by Homi</div>
 
-    <h1>PLEASE GIVE ME BITCOIN</h1>
+    <header class="hero">
+        <h1>PLEASE GIVE ME BITCOIN</h1>
+    </header>
+
+    <div class="meme-cta" aria-label="Shiba Inu asking for crypto">
+        <div class="meme-content">
+            <div class="meme-bubble">
+                <span>pls doge.</span>
+                <strong>click me</strong>
+            </div>
+            <button class="reset-shiba" type="button" aria-label="Reset Shiba Inu message">no problem :)</button>
+        </div>
+        <button class="shiba-wrap" type="button" aria-label="Show Shiba Inu wallet address" style="border:0; padding:0; background:transparent; font:inherit;">
+            <img class="shiba-image" src="shibainu.jpg" alt="Shiba Inu">
+        </button>
+    </div>
 
     <section class="wallet-grid">
         <article class="wallet-card eth-glow">
@@ -646,6 +871,48 @@
 
     <script>
     (function(){
+        const shibaButton = document.querySelector('.shiba-wrap');
+        const shibaBubble = document.querySelector('.meme-bubble');
+        const resetShibaButton = document.querySelector('.reset-shiba');
+        const shibaAddress = 'DANgiX5BPnVK7zJedeAjFRwcdbWwdVnNx9';
+        const defaultBubbleHTML = '<span>pls doge.</span><strong>click me</strong>';
+
+        function resetShibaState() {
+            if (!shibaButton || !shibaBubble || !resetShibaButton) return;
+            shibaButton.classList.remove('smiling');
+            shibaButton.querySelector('.shiba-image').src = 'shibainu.jpg';
+            shibaBubble.innerHTML = defaultBubbleHTML;
+            resetShibaButton.classList.remove('visible');
+        }
+
+        if (shibaButton && shibaBubble) {
+            shibaButton.addEventListener('click', async function() {
+                shibaButton.classList.add('smiling');
+                shibaButton.querySelector('.shiba-image').src = 'smilingshibainu.jpg';
+                shibaBubble.innerHTML = '<span>address copied</span><strong>:)</strong>';
+
+                if (resetShibaButton) {
+                    resetShibaButton.classList.add('visible');
+                }
+
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(shibaAddress);
+                    } else {
+                        console.warn('Clipboard API unavailable in this context; reset UI still shown.');
+                    }
+                } catch (err) {
+                    console.error('Shiba copy failed', err);
+                }
+            });
+        }
+
+        if (resetShibaButton) {
+            resetShibaButton.addEventListener('click', function() {
+                resetShibaState();
+            });
+        }
+
         const wallets = [
             {
                 cssClass: 'eth-glow',
