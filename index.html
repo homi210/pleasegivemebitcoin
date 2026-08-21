@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Please Give Me Bitcoin</title>
     <style>
+            html {
+                max-width: 100%;
+                overflow-x: clip;
+            }
+
             * {
                 box-sizing: border-box;
             }
@@ -32,7 +37,7 @@
                 align-items: center;
                 justify-content: flex-start;
                 gap: 28px;
-                overflow-x: hidden;
+                overflow-x: clip;
                 overflow-y: hidden;
             }
 
@@ -754,16 +759,17 @@
                 }
 
                 .meme-cta {
-                    right: 12px;
+                    right: max(8px, env(safe-area-inset-right));
                     bottom: 14px;
-                    width: 86px;
+                    width: min(86px, calc(100vw - 16px));
+                    max-width: calc(100vw - 16px);
                     padding: 7px;
                     gap: 7px;
                     border-radius: 16px;
                 }
 
                 .meme-cta.expanded {
-                    width: min(138px, calc(100vw - 24px));
+                    width: min(138px, calc(100vw - 16px));
                 }
 
                 .meme-content {
