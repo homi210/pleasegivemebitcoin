@@ -722,9 +722,11 @@
 
             @media (max-width: 600px) {
                 body {
-                    padding: 64px 12px 24px;
+                    padding: 58px 10px 28px;
                     align-items: flex-start;
                     justify-content: flex-start;
+                    gap: 18px;
+                    overflow-y: auto;
                 }
 
                 .site-tag {
@@ -743,8 +745,8 @@
 
                 .wallet-grid {
                     width: 100%;
-                    padding: 28px 14px 20px;
-                    gap: 16px;
+                    padding: 22px 10px 132px;
+                    gap: 14px;
                     border-radius: 22px;
                     flex-direction: column;
                     align-items: stretch;
@@ -754,8 +756,14 @@
                 .meme-cta {
                     right: 12px;
                     bottom: 14px;
-                    max-width: min(86vw, 320px);
-                    gap: 10px;
+                    width: 86px;
+                    padding: 7px;
+                    gap: 7px;
+                    border-radius: 16px;
+                }
+
+                .meme-cta.expanded {
+                    width: min(138px, calc(100vw - 24px));
                 }
 
                 .meme-content {
@@ -763,13 +771,13 @@
                 }
 
                 .meme-bubble {
-                    max-width: 180px;
-                    font-size: 0.72rem;
-                    padding: 10px 12px;
+                    max-width: none;
+                    font-size: 0.62rem;
+                    padding: 8px 7px;
                 }
 
                 .meme-bubble strong {
-                    font-size: 0.8rem;
+                    font-size: 0.68rem;
                 }
 
                 .copy-note {
@@ -786,35 +794,36 @@
                 .wallet-card {
                     width: 100%;
                     min-height: auto;
-                    padding: 18px 16px;
-                    margin-bottom: 6px;
+                    padding: 15px 12px;
+                    margin-bottom: 0;
                 }
 
                 .wallet-label {
-                    font-size: 1.15rem;
-                    gap: 6px;
-                    margin-bottom: 14px;
+                    font-size: 1.05rem;
+                    gap: 5px;
+                    margin-bottom: 10px;
                 }
 
                 .wallet-logo {
-                    width: 34px;
-                    height: 34px;
+                    width: 30px;
+                    height: 30px;
                 }
 
                 .qr-code {
-                    width: clamp(96px, 36vw, 140px);
+                    width: clamp(92px, 34vw, 124px);
                     height: auto;
                     aspect-ratio: 1/1;
                     margin: 0 auto;
-                    padding: 8px;
-                    border-radius: 14px;
+                    padding: 7px;
+                    border-radius: 12px;
                     box-shadow: 0 8px 18px rgba(0,0,0,0.18);
                 }
 
-                .wallet-address { font-size: 0.72rem; }
+                .wallet-address { font-size: 0.66rem; }
 
                 h1 {
-                    font-size: 1.5rem;
+                    font-size: clamp(1.3rem, 7vw, 1.6rem);
+                    line-height: 1;
                 }
 
                 .hero {
@@ -831,12 +840,28 @@
                 .shiba-wrap {
                     width: 68px;
                     height: 68px;
-                    padding: 8px;
+                    padding: 7px;
                 }
 
                 .shiba-image {
-                    width: 50px;
-                    height: 50px;
+                    width: 52px;
+                    height: 52px;
+                }
+
+                .wallet-card.expanded .card-details {
+                    max-height: 180px;
+                }
+
+                .card-actions {
+                    gap: 6px;
+                    margin-top: 10px;
+                    padding-top: 10px;
+                }
+
+                .send-btn,
+                .explorer-link {
+                    padding: 7px 8px;
+                    font-size: 0.66rem;
                 }
             }
 
