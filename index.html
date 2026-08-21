@@ -25,13 +25,15 @@
                 color: rgb(255, 255, 255);
                 min-height: 100vh;
                 margin: 0;
-                padding: 0 20px 30px;
+                padding: clamp(78px, 10vh, 108px) 20px 34px;
                 position: relative;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                gap: 22px;
+                justify-content: flex-start;
+                gap: 28px;
+                overflow-x: hidden;
+                overflow-y: hidden;
             }
 
             body::before {
@@ -83,12 +85,12 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 28px;
+                gap: 22px;
                 flex-wrap: wrap;
                 margin: 0 auto;
-                width: min(1000px, 100%);
-                padding: 24px 28px 32px;
-                border-radius: 32px;
+                width: min(960px, 100%);
+                padding: 26px 24px 30px;
+                border-radius: 28px;
                 background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012));
                 border: 1px solid rgba(255,255,255,0.09);
                 box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 30px 60px -24px rgba(0,0,0,0.5);
@@ -101,25 +103,38 @@
                 right: 24px;
                 bottom: 24px;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                gap: 18px;
+                gap: 10px;
+                width: 148px;
+                padding: 10px;
+                border-radius: 22px;
+                background: linear-gradient(165deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
+                border: 1px solid rgba(255,255,255,0.14);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 40px -14px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.18), 0 0 20px rgba(245,166,35,0.45), 0 0 42px rgba(245,166,35,0.4), 0 0 74px rgba(245,166,35,0.16);
+                backdrop-filter: blur(14px) saturate(140%);
+                -webkit-backdrop-filter: blur(14px) saturate(140%);
                 z-index: 10;
-                max-width: min(82vw, 390px);
+            }
+
+            .meme-cta::before {
+                content: none;
             }
 
             .meme-content {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-end;
+                align-items: center;
                 gap: 8px;
-                margin-right: 2px;
+                width: 100%;
             }
 
             .meme-bubble {
                 position: relative;
-                max-width: 170px;
+                width: 100%;
+                max-width: none;
                 padding: 10px 12px 9px;
-                border-radius: 16px;
+                border-radius: 14px;
                 background: rgba(255,255,255,0.96);
                 color: #101827;
                 font-weight: 800;
@@ -129,8 +144,8 @@
                 text-transform: lowercase;
                 box-shadow: 0 16px 30px rgba(0,0,0,0.2);
                 border: 1px solid rgba(11,18,32,0.08);
-                transform: translateX(0);
-                margin-bottom: 0;
+                margin: 0;
+                text-align: center;
             }
 
             .reset-shiba {
@@ -146,7 +161,7 @@
                 cursor: pointer;
                 box-shadow: 0 6px 14px rgba(8,12,20,0.12);
                 transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-                margin-left: auto;
+                margin: 0 auto;
                 display: none;
                 align-items: center;
                 justify-content: center;
@@ -167,16 +182,7 @@
             }
 
             .meme-bubble::after {
-                content: "";
-                position: absolute;
-                right: -7px;
-                bottom: 20px;
-                width: 14px;
-                height: 14px;
-                background: rgba(255,255,255,0.96);
-                border-right: 1px solid rgba(11,18,32,0.08);
-                border-bottom: 1px solid rgba(11,18,32,0.08);
-                transform: rotate(-45deg);
+                content: none;
             }
 
             .meme-bubble span,
@@ -189,50 +195,45 @@
                 font-weight: 800;
             }
 
-            .copy-note {
-                display: none;
-            }
-
             .shiba-wrap {
                 position: relative;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 88px;
-                height: 88px;
-                padding: 0;
-                border-radius: 50%;
+                width: 112px;
+                height: 112px;
+                padding: 14px;
+                border-radius: 22px;
                 overflow: hidden;
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.14);
-                box-shadow: 0 14px 28px rgba(0,0,0,0.24), 0 0 22px rgba(122,192,255,0.16);
+                background: linear-gradient(165deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
+                border: 1px solid rgba(255,255,255,0.14) !important;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 40px -14px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.18) !important;
+                backdrop-filter: blur(14px) saturate(140%);
+                -webkit-backdrop-filter: blur(14px) saturate(140%);
                 flex-shrink: 0;
                 cursor: pointer;
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
+                margin: 0 auto;
             }
 
             .shiba-wrap:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 18px 30px rgba(0,0,0,0.26), 0 0 22px rgba(122,192,255,0.2);
+                border-color: rgba(255,255,255,0.24) !important;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 26px 56px -16px rgba(0,0,0,0.48), 0 6px 18px rgba(0,0,0,0.22) !important;
             }
 
             .shiba-wrap::before {
-                content: "";
-                position: absolute;
-                inset: -12px;
-                border-radius: 50%;
-                background: radial-gradient(circle at center, rgba(120,170,255,0.22), transparent 66%);
-                filter: blur(10px);
-                z-index: -1;
+                content: none;
             }
 
             .shiba-image {
                 display: block;
-                width: 100%;
-                height: 100%;
+                width: 82px;
+                height: 82px;
                 object-fit: cover;
                 border-radius: 50%;
                 background: rgba(255,255,255,0.04);
+                box-shadow: 0 14px 30px rgba(0,0,0,0.22), 0 0 20px rgba(245,166,35,0.45), 0 0 42px rgba(245,166,35,0.4), 0 0 74px rgba(245,166,35,0.16);
                 transform: translateY(0);
                 animation: floatHero 5.5s ease-in-out infinite;
             }
@@ -264,9 +265,9 @@
                 background: linear-gradient(165deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
                 border: 1px solid rgba(255,255,255,0.14);
                 border-radius: 22px;
-                padding: 22px 20px 20px;
+                padding: 20px 18px 18px;
                 width: min(280px, 100%);
-                min-height: 320px;
+                min-height: 304px;
                 box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 40px -14px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.18);
                 backdrop-filter: blur(14px) saturate(140%);
                 -webkit-backdrop-filter: blur(14px) saturate(140%);
@@ -319,9 +320,10 @@
             }
 
             .wallet-card.expanded .card-details {
-                max-height: 100px;
+                max-height: 150px;
                 opacity: 1;
-                padding-top: 14px;
+                padding-top: 12px;
+                overflow: visible;
             }
 
             .wallet-address.abbrev-mode {
@@ -417,6 +419,7 @@
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
+                width: 100%;
                 margin-top: 14px;
                 padding-top: 14px;
                 border-top: 1px solid rgba(255,255,255,0.09);
@@ -433,7 +436,12 @@
                 letter-spacing: 0.02em;
                 cursor: pointer;
                 text-decoration: none;
-                display: inline-block;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1 1 96px;
+                min-width: 0;
+                white-space: nowrap;
                 transition: background 0.22s ease, border-color 0.22s ease, transform 0.18s ease;
             }
 
@@ -462,6 +470,12 @@
                 padding: 9px 14px;
                 border-radius: 999px;
                 border: 1px solid rgba(255,255,255,0.12);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1 1 96px;
+                min-width: 0;
+                white-space: nowrap;
                 transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease;
             }
 
@@ -663,6 +677,49 @@
                 color: rgba(78, 245, 178, 1);
             }
 
+            @media (min-width: 601px) {
+                .wallet-card {
+                    min-height: 280px;
+                    padding: 16px 14px 14px;
+                }
+
+                .wallet-card .wallet-label {
+                    gap: 7px;
+                    margin-bottom: 12px;
+                    font-size: 1.45rem;
+                }
+
+                .wallet-card .wallet-logo {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .wallet-card .qr-code {
+                    width: 132px;
+                    height: 132px;
+                    padding: 10px;
+                    border-radius: 16px;
+                }
+
+                .wallet-card .wallet-address.abbrev-mode {
+                    margin-top: 10px;
+                    padding: 6px 10px;
+                    font-size: 0.68rem;
+                }
+
+                .wallet-card .card-actions {
+                    gap: 6px;
+                    margin-top: 10px;
+                    padding-top: 10px;
+                }
+
+                .wallet-card .send-btn,
+                .wallet-card .explorer-link {
+                    padding: 7px 9px;
+                    font-size: 0.68rem;
+                }
+            }
+
             @media (max-width: 600px) {
                 body {
                     padding: 64px 12px 24px;
@@ -774,6 +831,12 @@
                 .shiba-wrap {
                     width: 68px;
                     height: 68px;
+                    padding: 8px;
+                }
+
+                .shiba-image {
+                    width: 50px;
+                    height: 50px;
                 }
             }
 
@@ -808,6 +871,13 @@
                     width: calc(33.333% - 18.666px);
                 }
             }
+
+            @media (min-width: 1200px) {
+                .wallet-grid {
+                    width: min(840px, calc(100% - 48px));
+                    gap: 20px;
+                }
+            }
     </style>
 </head>
 <body>
@@ -826,7 +896,7 @@
             </div>
             <button class="reset-shiba" type="button" aria-label="Reset Shiba Inu message">no problem :)</button>
         </div>
-        <button class="shiba-wrap" type="button" aria-label="Show Shiba Inu wallet address" style="border:0; padding:0; background:transparent; font:inherit;">
+        <button class="shiba-wrap" type="button" aria-label="Show Shiba Inu wallet address">
             <img class="shiba-image" src="shibainu.jpg" alt="Shiba Inu">
         </button>
     </div>
@@ -1077,6 +1147,14 @@
                     }
                 }
             });
+
+            if (wallet.cssClass === 'btc-glow') {
+                window.addEventListener('load', function() {
+                    setTimeout(function() {
+                        expand();
+                    }, 750);
+                });
+            }
         });
 
         // Close expanded card when clicking outside
